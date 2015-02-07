@@ -10,3 +10,15 @@ Scenario: Add a single product to a cart
     """
     Boomerang
     """
+
+Scenario: Add multiple products to a cart
+  Given a cart
+  When I add a product called "Boomerang" to the cart
+  And I add a product called "Toaster" to the cart
+  And I add a product called "Bat Costume" to the cart
+  Then I should get:
+    """
+    Boomerang
+    Toaster
+    Bat Costume
+    """
