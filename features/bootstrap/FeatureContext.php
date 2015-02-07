@@ -6,11 +6,15 @@ use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
+use Acme\Cart;
+
 /**
  * Defines application features from the specific context.
  */
 class FeatureContext implements Context, SnippetAcceptingContext
 {
+    private $cart;
+
     /**
      * Initializes context.
      *
@@ -27,7 +31,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function aCart()
     {
-        throw new PendingException();
+        $this->cart = new Cart;
     }
 
     /**
