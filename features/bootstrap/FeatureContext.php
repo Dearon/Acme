@@ -5,6 +5,8 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use PhpSpec\Matcher\ArrayContainMatcher;
+use Bossa\PhpSpec\Expect;
 
 use Acme\Cart;
 use Acme\ProductRepository;
@@ -50,6 +52,13 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iShouldGet(PyStringNode $expected)
     {
-        throw new PendingException();
+        $content = array();
+        foreach ($this->cart->get() as $product) {
+            $content[] = $product['name'];
+        }
+
+        foreach ($expected->getStrings() as $product) {
+            expect($content)->shouldContain($product);
+        }
     }
 }
