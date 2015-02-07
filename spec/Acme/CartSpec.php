@@ -34,4 +34,13 @@ class CartSpec extends ObjectBehavior
         $this->add($this->productRepository->find("Product 3"));
         $this->get()->shouldHaveCount(3);
     }
+
+    function it_can_remove_a_product()
+    {
+        $this->add($this->productRepository->find("Product 1"));
+        $this->add($this->productRepository->find("Product 2"));
+        $this->add($this->productRepository->find("Product 3"));
+        $this->remove($this->productRepository->find("Product 1"));
+        $this->get()->shouldHaveCount(2);
+    }
 }
