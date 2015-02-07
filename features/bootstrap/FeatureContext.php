@@ -7,6 +7,7 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
 use Acme\Cart;
+use Acme\ProductRepository;
 
 /**
  * Defines application features from the specific context.
@@ -14,6 +15,7 @@ use Acme\Cart;
 class FeatureContext implements Context, SnippetAcceptingContext
 {
     private $cart;
+    private $productRepository;
 
     /**
      * Initializes context.
@@ -24,6 +26,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function __construct()
     {
+        $this->productRepository = new ProductRepository();
     }
 
     /**
@@ -39,7 +42,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function iAddAProductCalledToTheCart($product)
     {
-        throw new PendingException();
+        $this->cart->add($this->productRepository->find($product));
     }
 
     /**
