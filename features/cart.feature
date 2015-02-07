@@ -1,4 +1,4 @@
-Feature: cart
+Feature: Add a product to a cart
   In order to buy products
   As a customer
   I first need to be able to add them to my cart
