@@ -40,7 +40,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @When I add a product called :arg1 to the cart
+     * @When I add a product called :product to the cart
      */
     public function iAddAProductCalledToTheCart($product)
     {
@@ -48,9 +48,17 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
+     * @When I remove a product called :product from the cart
+     */
+    public function iRemoveAProductCalledFromTheCart($product)
+    {
+        $this->cart->remove($this->productRepository->find($product));
+    }
+
+    /**
      * @Then the cart should contain:
      */
-    public function theCartShouldContain(PyStringNode $string)
+    public function theCartShouldContain(PyStringNode $expected)
     {
         $content = array();
         foreach ($this->cart->get() as $product) {
