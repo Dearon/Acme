@@ -48,9 +48,9 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Then I should get:
+     * @Then the cart should contain:
      */
-    public function iShouldGet(PyStringNode $expected)
+    public function theCartShouldContain(PyStringNode $string)
     {
         $content = array();
         foreach ($this->cart->get() as $product) {
