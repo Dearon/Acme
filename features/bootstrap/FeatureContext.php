@@ -7,6 +7,7 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use PhpSpec\Matcher\ArrayContainMatcher;
 use Bossa\PhpSpec\Expect;
+use Prophecy\Prophet;
 
 use Acme\Cart;
 use Acme\ProductRepository;
@@ -16,6 +17,8 @@ use Acme\ProductRepository;
  */
 class FeatureContext implements Context, SnippetAcceptingContext
 {
+    private $prophet;
+    private $products;
     private $cart;
     private $productRepository;
 
@@ -28,6 +31,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function __construct()
     {
+        $this->prophet = new \Prophecy\Prophet;
         $this->productRepository = new ProductRepository();
     }
 
@@ -37,6 +41,31 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function aEmptyCart()
     {
         $this->cart = new Cart;
+    }
+
+    /**
+     * @Given the following products:
+     */
+    public function theFollowingProducts(TableNode $products)
+    {
+        foreach($products as $product) {
+            $prophecy = $this->prophet->prophesize();
+            $prophecy->willExtend('Acme\Product');
+            $prophecy->getName()->willReturn($product['Name']);
+            $prophecy->getPrice()->willReturn($product['Price']);
+            $this->products[] = $prophecy->reveal();
+        }
+    }
+
+    /**
+     * @When I add a the products to the cart
+     */
+    public function iAddATheProductsToTheCart()
+    {
+        foreach($this->products as $product)
+        {
+            $this->cart->add($product);
+        }
     }
 
     /**
@@ -68,5 +97,13 @@ class FeatureContext implements Context, SnippetAcceptingContext
         foreach ($expected->getStrings() as $product) {
             expect($content)->shouldContain($product);
         }
+    }
+
+    /**
+     * @Then the total price in the cart should be :total
+     */
+    public function theTotalPriceInTheCartShouldBe($total)
+    {
+        expect($this->cart->getPrice())->shouldBeLike($total);
     }
 }
