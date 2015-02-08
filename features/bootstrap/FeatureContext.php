@@ -32,9 +32,9 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @Given a cart
+     * @Given a empty cart
      */
-    public function aCart()
+    public function aEmptyCart()
     {
         $this->cart = new Cart;
     }
