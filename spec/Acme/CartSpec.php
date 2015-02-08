@@ -66,4 +66,19 @@ class CartSpec extends ObjectBehavior
         $this->remove($productTwo);
         $this->get()->shouldHaveCount(2);
     }
+
+    function it_can_show_the_total_price($productOne, $productTwo)
+    {
+        $productOne->beADoubleOf('Acme\Product');
+        $productOne->getName()->willReturn('Product 1');
+        $productOne->getPrice()->willReturn('0.50');
+
+        $productTwo->beADoubleOf('Acme\Product');
+        $productTwo->getName()->willReturn('Product 2');
+        $productTwo->getPrice()->willReturn('5.00');
+
+        $this->add($productOne);
+        $this->add($productTwo);
+        $this->getPrice()->shouldBe(5.50);
+    }
 }

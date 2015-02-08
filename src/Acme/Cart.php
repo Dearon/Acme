@@ -25,4 +25,15 @@ class Cart
             }
         }
     }
+
+    public function getPrice()
+    {
+        $total = 0;
+        foreach($this->products as $product)
+        {
+            $total += $product->getPrice();
+        }
+
+        return $total;
+    }
 }
