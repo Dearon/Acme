@@ -11,9 +11,4 @@ class ProductRepositorySpec extends ObjectBehavior
     {
         $this->shouldHaveType('Acme\ProductRepository');
     }
-
-    function it_can_find_a_product()
-    {
-        $this->find("Product")->shouldReturn(array("name" => "Product"));
-    }
 }
