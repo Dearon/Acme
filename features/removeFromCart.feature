@@ -5,9 +5,13 @@ Feature: Remove a product to a cart
 
 Scenario: Remove a product from a cart
   Given a empty cart
-  When I add a product called "Boomerang" to the cart
-  And I add a product called "Toaster" to the cart
-  And I remove a product called "Boomerang" from the cart
+  When I add a the products to the cart:
+    | Name      | Price |
+    | Boomerang | 15.99 |
+    | Toaster   | 49.99 |
+  And I remove a the following product from the cart:
+    | Name      | Price |
+    | Boomerang | 15.99 |
   Then the cart should contain:
     """
     Toaster

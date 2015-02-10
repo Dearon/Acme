@@ -5,9 +5,8 @@ Feature: See the price of the products in the cart
 
   Scenario: Show cart price
     Given a empty cart
-    And the following products:
+    When I add a the products to the cart:
       | Name      | Price |
       | Boomerang | 15.99 |
       | Toaster   | 49.99 |
-    When I add a the products to the cart
     Then the total price in the cart should be "65.98"

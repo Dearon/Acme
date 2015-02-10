@@ -1,4 +1,4 @@
-    <?php
+<?php
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
@@ -9,9 +9,6 @@ use PhpSpec\Matcher\ArrayContainMatcher;
 use Bossa\PhpSpec\Expect;
 use Prophecy\Prophet;
 
-use Acme\Cart;
-use Acme\ProductRepository;
-
 /**
  * Defines application features from the specific context.
  */
@@ -20,7 +17,6 @@ class FeatureContext implements Context, SnippetAcceptingContext
     private $prophet;
     private $products;
     private $cart;
-    private $productRepository;
 
     /**
      * Initializes context.
@@ -32,7 +28,6 @@ class FeatureContext implements Context, SnippetAcceptingContext
     public function __construct()
     {
         $this->prophet = new \Prophecy\Prophet;
-        $this->productRepository = new ProductRepository();
     }
 
     /**
@@ -40,48 +35,37 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function aEmptyCart()
     {
-        $this->cart = new Cart;
+        $this->cart = new Acme\Cart;
     }
 
     /**
-     * @Given the following products:
+     * @When I add a the products to the cart:
      */
-    public function theFollowingProducts(TableNode $products)
+    public function iAddATheProductsToTheCart(TableNode $products)
     {
         foreach($products as $product) {
             $prophecy = $this->prophet->prophesize();
             $prophecy->willExtend('Acme\Product');
             $prophecy->getName()->willReturn($product['Name']);
             $prophecy->getPrice()->willReturn($product['Price']);
-            $this->products[] = $prophecy->reveal();
+
+            $this->cart->add($prophecy->reveal());
         }
     }
 
     /**
-     * @When I add a the products to the cart
+     * @When I remove a the following product from the cart:
      */
-    public function iAddATheProductsToTheCart()
+    public function iRemoveATheFollowingProductFromTheCart(TableNode $products)
     {
-        foreach($this->products as $product)
-        {
-            $this->cart->add($product);
+        foreach($products as $product) {
+            $prophecy = $this->prophet->prophesize();
+            $prophecy->willExtend('Acme\Product');
+            $prophecy->getName()->willReturn($product['Name']);
+            $prophecy->getPrice()->willReturn($product['Price']);
+
+            $this->cart->remove($prophecy->reveal());
         }
-    }
-
-    /**
-     * @When I add a product called :product to the cart
-     */
-    public function iAddAProductCalledToTheCart($product)
-    {
-        $this->cart->add($this->productRepository->find($product));
-    }
-
-    /**
-     * @When I remove a product called :product from the cart
-     */
-    public function iRemoveAProductCalledFromTheCart($product)
-    {
-        $this->cart->remove($this->productRepository->find($product));
     }
 
     /**
@@ -91,7 +75,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     {
         $content = array();
         foreach ($this->cart->get() as $product) {
-            $content[] = $product['name'];
+            $content[] = $product->getName();
         }
 
         foreach ($expected->getStrings() as $product) {
