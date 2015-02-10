@@ -45,7 +45,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     {
         foreach($products as $product) {
             $prophecy = $this->prophet->prophesize();
-            $prophecy->willExtend('Acme\Product');
+            $prophecy->willExtend('Acme\Model\Product');
             $prophecy->getName()->willReturn($product['Name']);
             $prophecy->getPrice()->willReturn($product['Price']);
 
@@ -60,7 +60,7 @@ class FeatureContext implements Context, SnippetAcceptingContext
     {
         foreach($products as $product) {
             $prophecy = $this->prophet->prophesize();
-            $prophecy->willExtend('Acme\Product');
+            $prophecy->willExtend('Acme\Model\Product');
             $prophecy->getName()->willReturn($product['Name']);
             $prophecy->getPrice()->willReturn($product['Price']);
 
