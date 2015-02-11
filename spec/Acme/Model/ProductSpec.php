@@ -15,4 +15,14 @@ class ProductSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Acme\Model\Product');
     }
+
+    function it_requires_the_product_field()
+    {
+        $this->shouldThrow('\InvalidArgumentException')->during('__construct', array('', '1.00'));
+    }
+
+    function it_requires_the_price_field()
+    {
+        $this->shouldThrow('\InvalidArgumentException')->during('__construct', array('Product', ''));
+    }
 }
