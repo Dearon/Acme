@@ -2,6 +2,7 @@
 
 namespace spec\Acme;
 
+use Acme\Model\Product;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -12,9 +13,8 @@ class CartSpec extends ObjectBehavior
         $this->shouldHaveType('Acme\Cart');
     }
 
-    function it_can_receive_a_single_product($product)
+    function it_can_receive_a_single_product(\Acme\Model\Product $product)
     {
-        $product->beADoubleOf('Acme\Model\Product');
         $product->getName()->willReturn('Product');
         $product->getPrice()->willReturn('1.00');
 
@@ -22,13 +22,11 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(1);
     }
 
-    function it_can_receive_multiple_products($productOne, $productTwo)
+    function it_can_receive_multiple_products(\Acme\Model\Product $productOne, \Acme\Model\Product $productTwo)
     {
-        $productOne->beADoubleOf('Acme\Model\Product');
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn('1.00');
 
-        $productTwo->beADoubleOf('Acme\Model\Product');
         $productTwo->getName()->willReturn('Product 2');
         $productTwo->getPrice()->willReturn('1.00');
 
@@ -37,17 +35,14 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(2);
     }
 
-    function it_can_remove_a_product($productOne, $productTwo, $productThree)
+    function it_can_remove_a_product(\Acme\Model\Product $productOne, \Acme\Model\Product $productTwo, \Acme\Model\Product $productThree)
     {
-        $productOne->beADoubleOf('Acme\Model\Product');
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn('1.00');
 
-        $productTwo->beADoubleOf('Acme\Model\Product');
         $productTwo->getName()->willReturn('Product 2');
         $productTwo->getPrice()->willReturn('1.00');
 
-        $productThree->beADoubleOf('Acme\Model\Product');
         $productThree->getName()->willReturn('Product 3');
         $productThree->getPrice()->willReturn('1.00');
 
@@ -58,13 +53,11 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(2);
     }
 
-    function it_can_show_the_total_price($productOne, $productTwo)
+    function it_can_show_the_total_price(\Acme\Model\Product $productOne, \Acme\Model\Product $productTwo)
     {
-        $productOne->beADoubleOf('Acme\Model\Product');
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn('0.50');
 
-        $productTwo->beADoubleOf('Acme\Model\Product');
         $productTwo->getName()->willReturn('Product 2');
         $productTwo->getPrice()->willReturn('5.00');
 
