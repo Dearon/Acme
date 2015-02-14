@@ -20,7 +20,7 @@ class Price
             throw new \InvalidArgumentException('The price has to be a positive number');
         }
 
-        $this->price = $price;
+        $this->price = round($price, 2);
     }
 
     public function getPrice()

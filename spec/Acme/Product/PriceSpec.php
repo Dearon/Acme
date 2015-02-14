@@ -32,6 +32,12 @@ class PriceSpec extends ObjectBehavior
         $this->shouldThrow(new \InvalidArgumentException('The price has to be a positive number'))->during('__construct', array(-1.23));
     }
 
+    function it_handles_rounding()
+    {
+        $this->beConstructedWith(1.499);
+        $this->getPrice()->shouldBe(1.50);
+    }
+
     function it_shows_the_price()
     {
         $this->getPrice()->shouldBe(1.00);
