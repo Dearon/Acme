@@ -7,16 +7,8 @@ class Product
     private $name;
     private $price;
 
-    public function __construct($name, $price)
+    public function __construct(\Acme\Product\Name $name, \Acme\Product\Price $price)
     {
-        if (empty($name)) {
-            throw new \InvalidArgumentException('The name argument is required');
-        }
-
-        if (empty($price)) {
-            throw new \InvalidArgumentException('The price argument is required');
-        }
-
         $this->name = $name;
         $this->price = $price;
     }

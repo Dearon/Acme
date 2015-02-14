@@ -7,22 +7,14 @@ use Prophecy\Argument;
 
 class ProductSpec extends ObjectBehavior
 {
-    function let()
+    function let(\Acme\Product\Name $name, \Acme\Product\Price $price)
     {
-        $this->beConstructedWith('Product', '1.00');
+        $name->getName()->willReturn('Product');
+        $price->getPrice()->willReturn(1.00);
+        $this->beConstructedWith($name, $price);
     }
     function it_is_initializable()
     {
         $this->shouldHaveType('Acme\Product\Product');
-    }
-
-    function it_requires_the_product_field()
-    {
-        $this->shouldThrow('\InvalidArgumentException')->during('__construct', array('', '1.00'));
-    }
-
-    function it_requires_the_price_field()
-    {
-        $this->shouldThrow('\InvalidArgumentException')->during('__construct', array('Product', ''));
     }
 }
