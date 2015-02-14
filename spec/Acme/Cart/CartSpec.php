@@ -31,10 +31,11 @@ class CartSpec extends ObjectBehavior
 
         $this->add($productOne);
         $this->add($productTwo);
-        $this->get()->shouldHaveCount(2);
+        $this->add($productTwo);
+        $this->get()->shouldHaveCount(3);
     }
 
-    function it_can_remove_a_product(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo, \Acme\Product\Product $productThree)
+    function it_can_remove_a_single_product(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn(1.00);
@@ -42,14 +43,40 @@ class CartSpec extends ObjectBehavior
         $productTwo->getName()->willReturn('Product 2');
         $productTwo->getPrice()->willReturn(1.00);
 
-        $productThree->getName()->willReturn('Product 3');
-        $productThree->getPrice()->willReturn(1.00);
+        $this->add($productOne);
+        $this->add($productTwo);
+        $this->remove($productTwo);
+        $this->get()->shouldHaveCount(1);
+    }
+
+    function it_can_remove_multiple_products(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
+    {
+        $productOne->getName()->willReturn('Product 1');
+        $productOne->getPrice()->willReturn(1.00);
+
+        $productTwo->getName()->willReturn('Product 2');
+        $productTwo->getPrice()->willReturn(1.00);
 
         $this->add($productOne);
         $this->add($productTwo);
-        $this->add($productThree);
+        $this->add($productTwo);
         $this->remove($productTwo);
         $this->get()->shouldHaveCount(2);
+    }
+
+    function it_can_remove_the_correct_product(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
+    {
+        $productOne->getName()->willReturn('Product 1');
+        $productOne->getPrice()->willReturn(1.00);
+
+        $productTwo->getName()->willReturn('Product 2');
+        $productTwo->getPrice()->willReturn(1.00);
+
+        $this->add($productOne);
+        $this->add($productTwo);
+        $this->remove($productOne);
+
+        $this->get()->shouldContain($productTwo);
     }
 
     function it_can_show_the_total_price(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)

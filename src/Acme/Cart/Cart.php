@@ -18,11 +18,10 @@ class Cart
 
     public function remove(\Acme\Product\Product $product)
     {
-        foreach($this->products as $productKey => $productValue)
-        {
-            if ($productValue === $product) {
-                unset($this->products[$productKey]);
-            }
+        $key = array_search($product, $this->products);
+
+        if ($key) {
+            unset($this->products[$key]);
         }
     }
 
