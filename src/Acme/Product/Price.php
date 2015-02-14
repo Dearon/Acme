@@ -12,7 +12,7 @@ class Price
             throw new \InvalidArgumentException('The price is required');
         }
 
-        if (gettype($price) != "double") {
+        if (gettype($price) != "double" && gettype($price) != "integer") {
             throw new \InvalidArgumentException('The price has to be a double');
         }
 
