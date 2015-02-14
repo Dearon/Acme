@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Acme\Model;
+namespace spec\Acme\Product;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
@@ -13,7 +13,7 @@ class ProductSpec extends ObjectBehavior
     }
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Model\Product');
+        $this->shouldHaveType('Acme\Product\Product');
     }
 
     function it_requires_the_product_field()

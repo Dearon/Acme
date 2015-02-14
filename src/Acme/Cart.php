@@ -2,13 +2,11 @@
 
 namespace Acme;
 
-use Acme\Model\Product;
-
 class Cart
 {
     private $products = array();
 
-    public function add(Product $product)
+    public function add(\Acme\Product\Product $product)
     {
         $this->products[] = $product;
     }
@@ -18,7 +16,7 @@ class Cart
         return $this->products;
     }
 
-    public function remove(Product $product)
+    public function remove(\Acme\Product\Product $product)
     {
         foreach($this->products as $productKey => $productValue)
         {

@@ -2,7 +2,7 @@
 
 namespace spec\Acme;
 
-use Acme\Model\Product;
+use Acme\Product\Product;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -13,7 +13,7 @@ class CartSpec extends ObjectBehavior
         $this->shouldHaveType('Acme\Cart');
     }
 
-    function it_can_receive_a_single_product(\Acme\Model\Product $product)
+    function it_can_receive_a_single_product(\Acme\Product\Product $product)
     {
         $product->getName()->willReturn('Product');
         $product->getPrice()->willReturn('1.00');
@@ -22,7 +22,7 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(1);
     }
 
-    function it_can_receive_multiple_products(\Acme\Model\Product $productOne, \Acme\Model\Product $productTwo)
+    function it_can_receive_multiple_products(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn('1.00');
@@ -35,7 +35,7 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(2);
     }
 
-    function it_can_remove_a_product(\Acme\Model\Product $productOne, \Acme\Model\Product $productTwo, \Acme\Model\Product $productThree)
+    function it_can_remove_a_product(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo, \Acme\Product\Product $productThree)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn('1.00');
@@ -53,7 +53,7 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(2);
     }
 
-    function it_can_show_the_total_price(\Acme\Model\Product $productOne, \Acme\Model\Product $productTwo)
+    function it_can_show_the_total_price(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn('0.50');

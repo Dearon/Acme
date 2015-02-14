@@ -1,6 +1,6 @@
 <?php
 
-namespace Acme\Model;
+namespace Acme\Product;
 
 class Product
 {
