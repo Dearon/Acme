@@ -27,12 +27,8 @@ class Cart
 
     public function getPrice()
     {
-        $total = 0;
-        foreach($this->products as $product)
-        {
-            $total += $product->getPrice();
-        }
-
-        return $total;
+        return array_reduce($this->products, function($carry, $product) {
+            return $carry + $product->getPrice();
+        }, 0);
     }
 }
