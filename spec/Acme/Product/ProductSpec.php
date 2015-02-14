@@ -17,4 +17,14 @@ class ProductSpec extends ObjectBehavior
     {
         $this->shouldHaveType('Acme\Product\Product');
     }
+
+    function it_shows_a_name()
+    {
+        $this->getName()->shouldBe('Product');
+    }
+
+    function it_shows_a_price()
+    {
+        $this->getPrice()->shouldBe(1.00);
+    }
 }

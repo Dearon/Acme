@@ -15,11 +15,11 @@ class Product
 
     public function getName()
     {
-        return $this->name;
+        return $this->name->getName();
     }
 
     public function getPrice()
     {
-        return $this->price;
+        return $this->price->getPrice();
     }
 }
