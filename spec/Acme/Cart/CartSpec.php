@@ -12,7 +12,7 @@ class CartSpec extends ObjectBehavior
         $this->shouldHaveType('Acme\Cart\Cart');
     }
 
-    function it_can_receive_a_single_product(\Acme\Product\Product $product)
+    function it_should_receive_a_single_product(\Acme\Product\Product $product)
     {
         $product->getName()->willReturn('Product');
         $product->getPrice()->willReturn(1.00);
@@ -21,7 +21,7 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(1);
     }
 
-    function it_can_receive_multiple_products(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
+    function it_should_receive_multiple_products(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn(1.00);
@@ -35,7 +35,7 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(3);
     }
 
-    function it_can_remove_a_single_product(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
+    function it_should_remove_a_single_product(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn(1.00);
@@ -49,7 +49,7 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(1);
     }
 
-    function it_can_remove_multiple_products(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
+    function it_should_remove_multiple_products(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn(1.00);
@@ -64,7 +64,7 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldHaveCount(2);
     }
 
-    function it_can_remove_the_correct_product(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
+    function it_should_remove_the_correct_product(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn(1.00);
@@ -79,7 +79,7 @@ class CartSpec extends ObjectBehavior
         $this->get()->shouldContain($productTwo);
     }
 
-    function it_can_show_the_total_price(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
+    function it_should_show_the_total_price(\Acme\Product\Product $productOne, \Acme\Product\Product $productTwo)
     {
         $productOne->getName()->willReturn('Product 1');
         $productOne->getPrice()->willReturn(0.50);
