@@ -34,7 +34,6 @@ class PriceSpec extends ObjectBehavior
 
     function it_shows_the_price()
     {
-        $this->beConstructedWith(1.23);
-        $this->getPrice()->shouldBe(1.23);
+        $this->getPrice()->shouldBe(1.00);
     }
 }

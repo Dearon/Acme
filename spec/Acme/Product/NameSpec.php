@@ -29,7 +29,6 @@ class NameSpec extends ObjectBehavior
 
     function it_shows_a_name()
     {
-        $this->beConstructedWith('Product Name');
-        $this->getName()->shouldBe('Product Name');
+        $this->getName()->shouldBe('Product');
     }
 }
