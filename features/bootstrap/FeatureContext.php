@@ -35,17 +35,17 @@ class FeatureContext implements Context, SnippetAcceptingContext
      */
     public function aEmptyCart()
     {
-        $this->cart = new Acme\Cart;
+        $this->cart = new Acme\Cart\Cart;
     }
 
     /**
-     * @When I add a the products to the cart:
+     * @When I add the products to the cart:
      */
-    public function iAddATheProductsToTheCart(TableNode $products)
+    public function iAddTheProductsToTheCart(TableNode $products)
     {
         foreach($products as $product) {
             $prophecy = $this->prophet->prophesize();
-            $prophecy->willExtend('Acme\Model\Product');
+            $prophecy->willExtend('Acme\Product\Product');
             $prophecy->getName()->willReturn($product['Name']);
             $prophecy->getPrice()->willReturn($product['Price']);
 
@@ -54,13 +54,13 @@ class FeatureContext implements Context, SnippetAcceptingContext
     }
 
     /**
-     * @When I remove a the following product from the cart:
+     * @When I remove the following product from the cart:
      */
-    public function iRemoveATheFollowingProductFromTheCart(TableNode $products)
+    public function iRemoveTheFollowingProductFromTheCart(TableNode $products)
     {
         foreach($products as $product) {
             $prophecy = $this->prophet->prophesize();
-            $prophecy->willExtend('Acme\Model\Product');
+            $prophecy->willExtend('Acme\Product\Product');
             $prophecy->getName()->willReturn($product['Name']);
             $prophecy->getPrice()->willReturn($product['Price']);
 

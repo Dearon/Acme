@@ -5,7 +5,7 @@ Feature: See the price of the products in the cart
 
   Scenario: Show cart price
     Given a empty cart
-    When I add a the products to the cart:
+    When I add the products to the cart:
       | Name      | Price |
       | Boomerang | 15.99 |
       | Toaster   | 49.99 |

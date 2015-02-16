@@ -5,7 +5,7 @@ Feature: Add a product to a cart
 
 Scenario: Add products to a cart
   Given a empty cart
-  When I add a the products to the cart:
+  When I add the products to the cart:
     | Name      | Price |
     | Boomerang | 15.99 |
     | Toaster   | 49.99 |
