@@ -1,4 +1,9 @@
 {
+  "require": {
+    "doctrine/common": "2.5.*@dev",
+    "doctrine/orm": "2.5.*@dev",
+    "rhumsaa/uuid": "2.8.*"
+  },
   "require-dev": {
     "behat/behat": "~3.0",
     "phpspec/phpspec": "~2.1",
