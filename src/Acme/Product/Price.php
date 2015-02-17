@@ -2,8 +2,16 @@
 
 namespace Acme\Product;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Embeddable
+ */
 class Price
 {
+    /**
+     * @ORM\Column(type="float")
+     */
     private $price;
 
     public function __construct($price)

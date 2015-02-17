@@ -2,8 +2,16 @@
 
 namespace Acme\Product;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Embeddable
+ */
 class Name
 {
+   /**
+     * @ORM\Column(type="string")
+     */
     private $name;
 
     public function __construct($name)
