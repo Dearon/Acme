@@ -33,6 +33,6 @@ class Price
 
     public function getPrice()
     {
-        return $this->price;
+        return number_format($this->price, 2);
     }
 }
