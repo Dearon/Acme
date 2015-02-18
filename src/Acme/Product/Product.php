@@ -29,12 +29,16 @@ class Product
      */
     private $price;
 
-    public function __construct(\Doctrine\ORM\EntityManager $entityManager, \Acme\Product\Name $name, \Acme\Product\Price $price)
+    public function __construct(\Acme\Product\Name $name, \Acme\Product\Price $price)
     {
-        $this->entityManager = $entityManager;
         $this->id = (string) \Rhumsaa\Uuid\Uuid::uuid1();
         $this->name = $name;
         $this->price = $price;
+    }
+
+    public function setEntityManager(\Doctrine\ORM\EntityManager $entityManager)
+    {
+        $this->entityManager = $entityManager;
     }
 
     public function getId()
@@ -73,6 +77,12 @@ class Product
             $this->name->generateSlug(new \Acme\Product\ProductRepository($this->entityManager));
 
         $this->entityManager->persist($this);
+        $this->entityManager->flush();
+    }
+
+    public function remove()
+    {
+        $this->entityManager->remove($this);
         $this->entityManager->flush();
     }
 }
