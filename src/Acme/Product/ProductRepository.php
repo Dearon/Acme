@@ -21,9 +21,8 @@ class ProductRepository
         return $this->getRepository()->findAll();
     }
 
-    public function findByName($name)
+    public function findBySlug($slug)
     {
-        $name = new \Acme\Product\Name($name);
-        return $this->getRepository()->findOneBy(array('name.name' => $name->getName()));
+        return $this->getRepository()->findOneBy(array('name.slug' => $slug));
     }
 }
