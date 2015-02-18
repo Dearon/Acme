@@ -17,7 +17,9 @@ class Name
     /**
      * @ORM\Column(type="string")
      */
-    private $slug;
+    private $slug = null;
+
+    private $slugify;
 
     public function __construct($name)
     {
@@ -30,13 +32,28 @@ class Name
         }
 
         $this->name = $name;
-
-        $slugify = new \Cocur\Slugify\Slugify();
-        $this->slug = $slugify->slugify($name);
+        $this->slugify = new \Cocur\Slugify\Slugify();
     }
 
     public function getName()
     {
         return $this->name;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    public function generateSlug(\Acme\Product\ProductRepository $repository, $increment = 0)
+    {
+        $slug = $this->slugify->slugify($this->name);
+        if ($increment > 0)
+            $slug = "$slug-$increment";
+
+        if ($repository->findBySlug($slug))
+            $this->generateSlug($repository, $increment + 1);
+        else
+            $this->slug = $slug;
     }
 }
