@@ -14,6 +14,11 @@ class Name
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $slug;
+
     public function __construct($name)
     {
         if (empty($name)) {
@@ -25,6 +30,9 @@ class Name
         }
 
         $this->name = $name;
+
+        $slugify = new \Cocur\Slugify\Slugify();
+        $this->slug = $slugify->slugify($name);
     }
 
     public function getName()
