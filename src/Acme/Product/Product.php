@@ -44,8 +44,24 @@ class Product
         return $this->name->getName();
     }
 
+    public function setName(\Acme\Product\Name $name)
+    {
+        $this->name = $name;
+    }
+
     public function getPrice()
     {
         return $this->price->getPrice();
+    }
+
+    public function setPrice(\Acme\Product\Price $price)
+    {
+        $this->price = $price;
+    }
+
+    public function save(\Doctrine\ORM\EntityManager $entityManager)
+    {
+        $entityManager->persist($this);
+        $entityManager->flush();
     }
 }
