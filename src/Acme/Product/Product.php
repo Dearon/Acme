@@ -29,11 +29,17 @@ class Product
      */
     private $price;
 
-    public function __construct(\Acme\Product\Name $name, \Acme\Product\Price $price)
+    /**
+     * @ORM\Embedded(class="Acme\Product\Description")
+     */
+    private $description;
+
+    public function __construct(\Acme\Product\Name $name, \Acme\Product\Price $price, \Acme\Product\Description $description)
     {
         $this->id = (string) \Rhumsaa\Uuid\Uuid::uuid1();
         $this->name = $name;
         $this->price = $price;
+        $this->description = $description;
     }
 
     public function setEntityManager(\Doctrine\ORM\EntityManager $entityManager)

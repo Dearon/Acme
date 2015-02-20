@@ -7,11 +7,12 @@ use Prophecy\Argument;
 
 class ProductSpec extends ObjectBehavior
 {
-    function let(\Acme\Product\Name $name, \Acme\Product\Price $price)
+    function let(\Acme\Product\Name $name, \Acme\Product\Price $price, \Acme\Product\Description $description)
     {
         $name->getName()->willReturn('Product');
         $price->getPrice()->willReturn(1.00);
-        $this->beConstructedWith($name, $price);
+        $description->getDescription()->willReturn('A description');
+        $this->beConstructedWith($name, $price, $description);
     }
     function it_is_initializable()
     {
