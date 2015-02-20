@@ -77,6 +77,16 @@ class Product
         $this->price = $price;
     }
 
+    public function getDescription()
+    {
+        return $this->description->getDescription();
+    }
+
+    public function setDescription(\Acme\Product\Description $description)
+    {
+        $this->description = $description;
+    }
+
     public function save()
     {
         if (! $this->getSlug())
