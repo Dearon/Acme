@@ -9,7 +9,7 @@ class NameSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('Product 1');
+        $this->beConstructedWith('Product 1', 'product-1');
     }
 
     function it_is_initializable()
@@ -19,12 +19,12 @@ class NameSpec extends ObjectBehavior
 
     function it_needs_a_name()
     {
-        $this->shouldThrow(new \InvalidArgumentException('The name is required'))->during('__construct', array(''));
+        $this->shouldThrow(new \InvalidArgumentException('The name is required'))->during('__construct', array('', 'product-1'));
     }
 
     function it_should_not_allow_a_integer_for_the_name()
     {
-        $this->shouldThrow(new \InvalidArgumentException('The name has to be a string'))->during('__construct', array(1));
+        $this->shouldThrow(new \InvalidArgumentException('The name has to be a string'))->during('__construct', array(1, 'product-1'));
     }
 
     function it_should_show_a_name()
@@ -32,18 +32,18 @@ class NameSpec extends ObjectBehavior
         $this->getName()->shouldBe('Product 1');
     }
 
-    function it_should_generate_a_slug(\Acme\Product\ProductRepository $productRepository)
+    function it_needs_a_slug()
     {
-        $productRepository->findBySlug('product-1')->willReturn(null);
-        $this->generateSlug($productRepository);
-        $this->getSlug()->shouldBe('product-1');
+        $this->shouldThrow(new \InvalidArgumentException('The slug is required'))->during('__construct', array('Product 1', ''));
     }
 
-    function it_should_not_generate_a_duplicate_slug(\Acme\Product\ProductRepository $productRepository)
+    function it_should_not_allow_a_integer_for_the_slug()
     {
-        $productRepository->findBySlug('product-1')->willReturn(true);
-        $productRepository->findBySlug('product-1-1')->willReturn(null);
-        $this->generateSlug($productRepository);
-        $this->getSlug()->shouldBe('product-1-1');
+        $this->shouldThrow(new \InvalidArgumentException('The slug has to be a string'))->during('__construct', array('Product 1', 1));
+    }
+
+    function it_should_show_a_slug()
+    {
+        $this->getSlug()->shouldBe('product-1');
     }
 }
