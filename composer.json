@@ -3,7 +3,8 @@
     "doctrine/common": "2.5.*@dev",
     "doctrine/orm": "2.5.*@dev",
     "rhumsaa/uuid": "2.8.*",
-    "cocur/slugify": "1.*"
+    "cocur/slugify": "1.*",
+    "league/tactician": "0.4.*@dev"
   },
   "require-dev": {
     "behat/behat": "~3.0",
