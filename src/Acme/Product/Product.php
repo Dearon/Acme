@@ -11,8 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 class Product
 {
-    private $entityManager;
-
     /**
      * @ORM\Id
      * @ORM\Column(type="guid")
@@ -40,11 +38,6 @@ class Product
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;
-    }
-
-    public function setEntityManager(\Doctrine\ORM\EntityManager $entityManager)
-    {
-        $this->entityManager = $entityManager;
     }
 
     public function getId()
@@ -87,7 +80,7 @@ class Product
         $this->description = $description;
     }
 
-    public function save()
+    /*public function save()
     {
         if (! $this->getSlug())
             $this->name->generateSlug(new \Acme\Product\ProductRepository($this->entityManager));
@@ -100,5 +93,5 @@ class Product
     {
         $this->entityManager->remove($this);
         $this->entityManager->flush();
-    }
+    }*/
 }
