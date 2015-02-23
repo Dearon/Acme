@@ -24,6 +24,5 @@ class AddProductHandler
         $product = new \Acme\Product\Product($name, $price, $description);
         $this->em->persist($product);
         $this->em->flush();
-
     }
 }
