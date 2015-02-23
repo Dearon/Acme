@@ -23,11 +23,6 @@ class ProductRepository
 
     public function findBySlug($slug)
     {
-        $product = $this->getRepository()->findOneBy(array('name.slug' => $slug));
-
-        if ($product)
-            $product->setEntityManager($this->entityManager);
-
-        return $product;
+        return $this->getRepository()->findOneBy(array('name.slug' => $slug));
     }
 }
