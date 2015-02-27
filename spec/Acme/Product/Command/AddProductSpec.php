@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Acme\Product;
+namespace spec\Acme\Product\Command;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class AddProductCommandSpec extends ObjectBehavior
+class AddProductSpec extends ObjectBehavior
 {
     function let()
     {
@@ -14,7 +14,7 @@ class AddProductCommandSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Product\AddProductCommand');
+        $this->shouldHaveType('Acme\Product\Command\AddProduct');
     }
 
     function it_should_show_a_name()

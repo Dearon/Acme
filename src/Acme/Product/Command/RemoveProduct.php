@@ -1,13 +1,11 @@
 <?php
 
-namespace Acme\Product;
+namespace Acme\Product\Command;
 
-use League\Tactician\Command;
-
-class RemoveProductCommand implements Command
+class RemoveProduct implements \League\Tactician\Command
 {
     private $product;
-    
+
     public function __construct(\Acme\Product\Product $product)
     {
         $this->product = $product;

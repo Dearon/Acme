@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\Product;
+namespace Acme\Product\Handler;
 
-class AddProductHandler
+class AddProduct
 {
     private $em;
 
@@ -11,7 +11,7 @@ class AddProductHandler
         $this->em = $em;
     }
 
-    public function handle(\Acme\Product\AddProductCommand $command)
+    public function handle(\Acme\Product\Command\AddProduct $command)
     {
         $productRepository = new \Acme\Product\ProductRepository($this->em);
         $utility = new \Acme\Product\ProductUtility($productRepository);

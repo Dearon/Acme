@@ -1,27 +1,18 @@
 <?php
 
-namespace Acme\Product;
+namespace Acme\Product\Command;
 
-use League\Tactician\Command;
-
-class EditProductCommand implements Command
+class AddProduct implements \League\Tactician\Command
 {
-    private $product;
     private $name;
     private $price;
     private $description;
 
-    public function __construct(\Acme\Product\Product $product, $name = null, $price = null, $description = null)
+    public function __construct($name, $price, $description)
     {
-        $this->product = $product;
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;
-    }
-
-    public function getProduct()
-    {
-        return $this->product;
     }
 
     public function getName()

@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\Product;
+namespace Acme\Product\Handler;
 
-class EditProductHandler
+class EditProduct
 {
     private $em;
 
@@ -11,7 +11,7 @@ class EditProductHandler
         $this->em = $em;
     }
 
-    public function handle(\Acme\Product\EditProductCommand $command)
+    public function handle(\Acme\Product\Command\EditProduct $command)
     {
         $product = $command->getProduct();
 

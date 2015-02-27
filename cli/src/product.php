@@ -59,7 +59,7 @@ class Product
             }
 
             try {
-                $command = new \Acme\Product\AddProductCommand($product->name, $product->price, $product->description);
+                $command = new \Acme\Product\Command\AddProduct($product->name, $product->price, $product->description);
                 $this->commandBus->handle($command);
             } catch (\Exception $e) {
                 $this->climate->out('Failed to import product with the name ' . $product->name);
@@ -118,7 +118,7 @@ class Product
             $product = $this->productRepository->findBySlug($slug);
 
             if ($product) {
-                $command = new \Acme\Product\RemoveProductCommand($product);
+                $command = new \Acme\Product\Command\RemoveProduct($product);
                 $this->commandBus->handle($command);
                 $this->climate->out('The product with the slug ' . $slug . ' was deleted');
             } else {

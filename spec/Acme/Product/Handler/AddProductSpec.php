@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Acme\Product;
+namespace spec\Acme\Product\Handler;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class AddProductHandlerSpec extends ObjectBehavior
+class AddProductSpec extends ObjectBehavior
 {
     function let(\Doctrine\ORM\EntityManager $em)
     {
@@ -14,6 +14,6 @@ class AddProductHandlerSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Product\AddProductHandler');
+        $this->shouldHaveType('Acme\Product\Handler\AddProduct');
     }
 }

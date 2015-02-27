@@ -1,8 +1,8 @@
 <?php
 
-namespace Acme\Product;
+namespace Acme\Product\Handler;
 
-class RemoveProductHandler
+class RemoveProduct
 {
     private $em;
 
@@ -11,7 +11,7 @@ class RemoveProductHandler
         $this->em = $em;
     }
 
-    public function handle(\Acme\Product\RemoveProductCommand $command)
+    public function handle(\Acme\Product\Command\RemoveProduct $command)
     {
         $this->em->remove($command->getProduct());
         $this->em->flush();

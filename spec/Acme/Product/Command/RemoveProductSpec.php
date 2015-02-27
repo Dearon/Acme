@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Acme\Product;
+namespace spec\Acme\Product\Command;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class RemoveProductCommandSpec extends ObjectBehavior
+class RemoveProductSpec extends ObjectBehavior
 {
     function let(\Acme\Product\Product $product)
     {
@@ -14,7 +14,7 @@ class RemoveProductCommandSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Acme\Product\RemoveProductCommand');
+        $this->shouldHaveType('Acme\Product\Command\RemoveProduct');
     }
 
     function it_should_return_a_product()
@@ -22,3 +22,4 @@ class RemoveProductCommandSpec extends ObjectBehavior
         $this->getProduct()->shouldHaveType('Acme\Product\Product');
     }
 }
+

@@ -17,8 +17,8 @@ $entityManager = \Doctrine\ORM\EntityManager::create($conn, $config);
 
 $commandBus = League\Tactician\Setup\QuickStart::create(
     [
-        Acme\Product\AddProductCommand::class => new \Acme\Product\AddProductHandler($entityManager),
-        Acme\Product\EditProductCommand::class => new \Acme\Product\EditProductHandler($entityManager),
-        Acme\Product\RemoveProductCommand::class => new \Acme\Product\RemoveProductHandler($entityManager)
+        Acme\Product\Command\AddProduct::class => new \Acme\Product\Handler\AddProduct($entityManager),
+        Acme\Product\Command\EditProduct::class => new \Acme\Product\Handler\EditProduct($entityManager),
+        Acme\Product\Command\RemoveProduct::class => new \Acme\Product\Handler\RemoveProduct($entityManager)
     ]
 );
