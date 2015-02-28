@@ -6,22 +6,30 @@ class Cart
 {
     private $products = array();
 
-    public function add(\Acme\Product\Product $product)
+    public function __construct($products = null)
+    {
+        if ($products) {
+            $this->products = unserialize($products);
+        }
+    }
+
+    public function addProduct(\Acme\Product\Product $product)
     {
         $this->products[] = $product;
     }
 
-    public function get()
+    public function getProducts()
     {
         return $this->products;
     }
 
-    public function remove(\Acme\Product\Product $product)
+    public function removeProduct(\Acme\Product\Product $product)
     {
-        $key = array_search($product, $this->products);
-
-        if ($key) {
-            unset($this->products[$key]);
+        foreach($this->products as $key => $value) {
+            if ($value->getId() === $product->getId()) {
+                unset($this->products[$key]);
+                break;
+            }
         }
     }
 
