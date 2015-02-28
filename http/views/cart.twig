@@ -1,0 +1,48 @@
+{%  extends "base.twig" %}
+
+{%  block content %}
+    <div class="col-sm-12 content">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">Cart</li>
+        </ol>
+        <div class="breadcrumb">
+            <h2>Cart</h2>
+            {%  if cart %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th class="remove"></th>
+                            <th>Name</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in cart %}
+                            <tr>
+                                <td><a href="/cart/remove/{{ product.slug }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                <td><a href="/product/{{ product.slug }}">{{ product.name }}</a></td>
+                                <td>{{ product.price }}</td>
+                            </tr>
+                        {% endfor %}
+
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td>Total price:</td>
+                            <td>{{  total }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="/order" class="btn btn-primary">Order these products</a>
+            {%  else %}
+                <p>You have no products in your cart.</p>
+            {%  endif %}
+        </div>
+    </div>
+{%  endblock %}

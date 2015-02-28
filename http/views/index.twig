@@ -1,0 +1,28 @@
+{%  extends "base.twig" %}
+
+{%  block content %}
+    <div class="col-sm-8 content">
+        <ol class="breadcrumb">
+            <li class="active">Home</li>
+        </ol>
+        <div class="breadcrumb">
+            <h2>Products</h2>
+            <ul class="list-unstyled">
+                {%  for product in products %}
+                    <li><a href="/product/{{ product.slug }}">{{  product.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="breadcrumb">
+            <h2>Cart content</h2>
+            <ul class="list-unstyled">
+                {% for product in cart %}
+                    <li>{{  product.name }}</li>
+                {%  endfor %}
+            </ul>
+            <a href="/cart" class="btn btn-default">Order</a></p>
+        </div>
+    </div>
+{%  endblock %}
