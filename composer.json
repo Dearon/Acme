@@ -5,7 +5,10 @@
     "rhumsaa/uuid": "2.8.*",
     "cocur/slugify": "1.*",
     "league/tactician": "0.4.*@dev",
-    "league/climate": "2.6.*"
+    "league/climate": "2.6.*",
+    "league/fractal": "0.11.*",
+    "silex/silex": "1.2.*",
+    "twig/twig": "1.18.*"
   },
   "require-dev": {
     "behat/behat": "~3.0",
